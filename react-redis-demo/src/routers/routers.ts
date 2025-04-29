@@ -91,7 +91,7 @@ const routes: CustomRouteObject[] = [
         path: 'observer',
         element: React.createElement(Observer),
         meta: {
-          title: '观察者模式',
+          title: '发布订阅模式',
           icon: React.createElement(CopyrightOutlined),
         },
       },
