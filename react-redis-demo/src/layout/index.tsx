@@ -1,31 +1,22 @@
 import React from 'react';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import './index.less';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { generateMenuItems } from '../utils';
 import routes from '../routers/routers';
-
 const { Header, Content, Footer, Sider } = Layout;
-
-
-
 const index: React.FC = () => {
   const navigate = useNavigate();
-
   // 处理菜单点击
   const handleMenuClick = ({ key }: { key: string }) => {
     navigate(key);
   };
 
-
-
-
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const menuItems = generateMenuItems(routes.find(r => r.path === '/')?.children || []);
+
   return (
     <Layout>
       <Header style={{ display: 'flex', alignItems: 'center' }}>

@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 const RouterWrapper = () => {
   const navigate = useNavigate();
   const routeElements = useRoutes(routes);
+
   //路由守卫
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -16,15 +17,14 @@ const RouterWrapper = () => {
     if (!token && !isLoginPage) {
       navigate('/login', { replace: true });
     }
+
     // 如果已经登录了，访问 login 页面，可以跳转到首页（可选）
     if (token && isLoginPage) {
       navigate('/home', { replace: true });
     }
+
   }, [location.pathname, navigate]);
 
-  if (localStorage.getItem('token')) {
-    return routeElements;
-  }
   return routeElements;
 };
 
