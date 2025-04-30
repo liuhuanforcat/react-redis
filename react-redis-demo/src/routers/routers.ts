@@ -8,6 +8,7 @@ import BigFile from '../pages/bigFile';
 import LongList from '../pages/longList';
 import NodeLoad from '../pages/nodeLoad';
 import Observer from '../pages/observer';
+import Strategy from '../pages/strategy';
 import React from 'react';
 import { HomeOutlined, CloudOutlined, FlagOutlined, WomanOutlined, UngroupOutlined, CopyrightOutlined, CompassOutlined } from '@ant-design/icons';
 
@@ -92,6 +93,14 @@ const routes: CustomRouteObject[] = [
         element: React.createElement(Observer),
         meta: {
           title: '发布订阅模式',
+          icon: React.createElement(CopyrightOutlined),
+        },
+      },
+      {
+        path: 'strategy',
+        element: React.createElement(Strategy),
+        meta: {
+          title: '策略模式',
           icon: React.createElement(CopyrightOutlined),
         },
       },

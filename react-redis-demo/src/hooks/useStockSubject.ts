@@ -32,7 +32,7 @@ const useStockSubject = (initialPrice: number) => {
     notify(newPrice);
   };
 
-  return { price, changePrice, subscribe };
+  return { price, changePrice, subscribe, unsubscribe };
 
 }
 

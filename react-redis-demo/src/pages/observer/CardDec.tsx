@@ -1,17 +1,17 @@
 
-import { Button } from 'antd';
 import React, { useEffect, useState } from 'react';
 function CardDec({ subject, isObserver }: any) {
   const [price, setPrice] = useState(subject.price);
 
   useEffect(() => {
-    if (!isObserver) {
+    if (isObserver) {
+      subject.subscribe(setPrice);
       return;
     }
-    // 订阅价格变化
-    const unsubscribe = subject.subscribe(setPrice);
+    // 取消订阅
+    subject.unsubscribe(setPrice);
     return () => {
-      isObserver && unsubscribe(); // 组件卸载时自动取消订阅
+      subject.unsubscribe(setPrice); // 组件卸载时自动取消订阅
     };
   }, [isObserver]);
 
