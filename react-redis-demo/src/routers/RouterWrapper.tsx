@@ -2,8 +2,6 @@
 import { useRoutes, useNavigate } from 'react-router-dom';
 import routes from './routers';
 import { useEffect } from 'react';
-
-
 const RouterWrapper = () => {
   const navigate = useNavigate();
   const routeElements = useRoutes(routes);
