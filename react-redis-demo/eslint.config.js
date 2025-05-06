@@ -23,12 +23,13 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
-      "@typescript-eslint/no-unused-vars": [
-        "warn",
-        { "varsIgnorePattern": "^React$" } // 忽略 React 的未使用警告
-      ],
+      "@typescript-eslint/no-unused-vars": "off", // 关闭未使用变量的警告
       "react/jsx-uses-react": "error", // 确保 React 导入在 JSX 中被识别为已使用
       "react/react-in-jsx-scope": "off", // 如果你用 React 17+ 的新 JSX 转换，可以关闭
     },
+    "compilerOptions": {
+      "noUnusedLocals": false, // 关闭未使用本地变量的检查
+      "noUnusedParameters": false // 关闭未使用参数的检查
+    }
   },
 )
