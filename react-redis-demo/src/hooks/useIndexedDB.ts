@@ -7,21 +7,17 @@ const useIndexedDB = (dbName: string, storeName: string, version: number) => {
 
   useEffect(() => {
     const request = indexedDB.open(dbName, version);
-
     request.onerror = (event) => {
       console.log("IndexedDB打开失败", event);
       setOpenLoading(false)
     };
-
     request.onsuccess = (event: any) => {
       console.log("IndexedDB打开成功", event.target.result);
       setDb(event.target.result);
       setOpenLoading(true);
     };
-
     request.onupgradeneeded = (event: any) => {
       const database = event.target.result;
-
       // 检查对象存储是否存在，不存在则创建
       if (!database.objectStoreNames.contains(storeName)) {
         const store = database.createObjectStore(storeName, { keyPath: 'id' });
@@ -57,9 +53,25 @@ const useIndexedDB = (dbName: string, storeName: string, version: number) => {
         };
       });
     },
-
     [db, storeName, version]
   );
-  return { openLoading, addItem }
+  // 获取所有数据
+  const getAllItems = useCallback(() => {
+    return new Promise((resolve, reject) => {
+      if (!db) {
+        reject('Database not initialized');
+        return;
+      }
+
+      const transaction = db.transaction([storeName], 'readonly');
+      const store = transaction.objectStore(storeName);
+      const request = store.getAll();
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = (event: any) => reject(event.target.error);
+    });
+  }, [db, storeName]);
+
+
+  return { openLoading, addItem, getAllItems }
 };
 export default useIndexedDB;
