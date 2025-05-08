@@ -24,3 +24,10 @@ export const generateMenuItems = (routes: CustomRouteObject[]): MenuProps['items
       };
     });
 };
+
+
+export const timeBasedUUID = () => {
+  const timePart = Date.now().toString(16).padStart(12, '0');
+  const randomPart = Math.random().toString(16).substring(2, 10);
+  return `${timePart}${randomPart}`;
+}
